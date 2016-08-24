@@ -2,15 +2,14 @@ package flatten
 
 trait Part02 {
 
-  // In Part 1, our service methods returned `Option`, and we composed a program
-  // that returned an `Option` as well.
+  s"""In Part 1, our service methods returned `Option`, and we composed a program that returned an `Option` as well.
 
-  // But `Option` is seldomly sufficient, no error reporting!
+  But `Option` is seldomly sufficient, no error reporting!
 
-  // For example, it's impossible to distinquish between a user not being found or
-  // the email address failing to validate.
+  For example, it's impossible to distinguish between a user not being found or the email address failing to validate.
 
-  // So, instead of `Option`, we can use `Either`, which supports a failure value.
+  So, instead of `Option`, we can use `Either`, which supports a failure value.
+  """
   def getUserName(data: Map[String, String]): Either[String, String] = ???
   def getUser(name: String): Either[String, User] = ???
   def getEmail(user: User): String = ???
@@ -41,14 +40,14 @@ trait Part02 {
   // return a new `RightProjection`, but an `Either`. And often a for-comprehension will
   // desugar to chained `maps` or `flatMaps`, and that breaks:
 
-  /* For example this:
+  // For example this:
 
+/*
   for {
     username <- getUserName(data).right
     userNameUpper = username.toUpperCase
   } yield userNameUpper
-
-  */
+*/
 
   // Will desugar to something similar to getUserName(data).right.map{...}.map{...}
   // But after the first `map`, you get an Either, which doesn't have a `map` method, so the second map breaks.

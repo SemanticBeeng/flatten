@@ -1,11 +1,10 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
-import scalaz._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc.{ Action, Controller, Result }
+//
 import scala.concurrent.Future
 import services.UserService
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
 
 /**
  * Original version, with `map` and `flatMap`.
@@ -14,7 +13,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
  *
  * Note especially how far the `getOrElse` with the error is from the problem, in the outer maps.
  */
-object Part15 extends Controller {
+class Part15 extends Controller {
 
   def index = Action.async { request =>
     val data = request.queryString.mapValues(_.head)

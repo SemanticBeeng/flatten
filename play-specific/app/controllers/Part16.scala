@@ -1,14 +1,17 @@
 package controllers
 
-import play.api._
-import play.api.mvc._
-import scalaz._
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.mvc.{ Action, Controller, Result }
+//
 import scala.concurrent.Future
 import services.UserService
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
+//
+import scalaz.{ \/, \/-, -\/ }
 import scalaz._
 import scalaz.Scalaz._
-import scalaz.contrib.std.futureInstance
+import scalaz.EitherT
+import scalaz.syntax.id._
+import scalaz.std.scalaFuture.futureInstance
 
 object Part16 extends Controller {
 
